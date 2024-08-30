@@ -1,0 +1,40 @@
+{
+  "name": "nocrime",
+  "version": "1.0.0",
+  "description": "backend for app no crime",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "noCrime"
+  ],
+  "author": "Anju Alba Sitompul",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.24.3",
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/supertest": "^6.0.2",
+    "@types/uuid": "^9.0.8",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.4",
+    "prisma": "^5.11.0",
+    "supertest": "^6.3.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.0",
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.1",
+    "joi": "^17.12.2",
+    "jsonwebtoken": "^9.0.2",
+    "ml-kmeans": "^6.0.0",
+    "uuid": "^9.0.1",
+    "winston": "^3.12.0"
+  }
+}

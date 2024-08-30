@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `types` ADD COLUMN `level` ENUM('LOW', 'MEDIUM', 'HIGH', 'CRITICAL') NOT NULL DEFAULT 'LOW';
