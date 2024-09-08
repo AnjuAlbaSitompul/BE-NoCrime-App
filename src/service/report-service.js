@@ -1,5 +1,6 @@
 import { prismaClient } from "../application/database.js";
 import { KMeans } from "../utils/kmeans.js";
+import { sendNotification } from "../utils/notification.js";
 import { addReportValidation } from "../validation/report-validation.js";
 import { validate } from "../validation/validate.js";
 
@@ -32,6 +33,28 @@ const addReport = async (request) => {
       createdAt: true,
     },
   });
+
+  if (result) {
+    const admin = await prismaClient.user.findMany({
+      where: {
+        role: "ADMIN",
+      },
+    });
+
+    const getToken = await prismaClient.notificationToken.findMany({
+      where: {
+        userId: {
+          in: admin.map((item) => item.id),
+        },
+      },
+    });
+
+    const token = getToken.map((item) => item.token);
+    await sendNotification(token, {
+      body: "Ada laporan baru",
+      title: "Laporan Baru",
+    });
+  }
 
   return result;
 };
@@ -103,10 +126,10 @@ const getAdminReport = async (request) => {
   return result;
 };
 
-const updateReport = (request) => {
+const updateReport = async (request) => {
   const { id } = request.params;
 
-  const result = prismaClient.report.update({
+  const result = await prismaClient.report.update({
     where: {
       id: parseInt(id),
     },
@@ -115,8 +138,26 @@ const updateReport = (request) => {
     },
     select: {
       id: true,
+      userId: true,
     },
   });
+
+  if (result) {
+    const getToken = await prismaClient.notificationToken.findMany({
+      where: {
+        userId: result.userId,
+      },
+      select: {
+        token: true,
+      },
+    });
+
+    const token = getToken.map((item) => item.token);
+    await sendNotification(token, {
+      body: "Harap Berlindung Ke Tempat Yang Aman Dan Jauhi Tempat Tersebut",
+      title: "Laporan Diverifikasi",
+    });
+  }
 
   return result;
 };

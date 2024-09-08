@@ -20,10 +20,10 @@ const KMeans = async () => {
 
   const remainingData = dataResult.map((item) => [item.kriminal]);
 
-  const result = kmeans(remainingData, 3);
+  const result = kmeans(remainingData, 2);
   const centroids = result.centroids.map((centroid) => centroid[0]);
   const sortedCentroids = [...centroids].sort((a, b) => b - a);
-  const dangerLevels = ["high", "medium", "safe"];
+  const dangerLevels = ["danger", "safe"];
 
   const getDangerLevel = (index) => {
     const centroidValue = centroids[index];
