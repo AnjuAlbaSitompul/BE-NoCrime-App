@@ -2,7 +2,7 @@
   "name": "nocrime",
   "version": "1.0.0",
   "description": "backend for app no crime",
-  "main": "index.js",
+  "main": "src/main.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
