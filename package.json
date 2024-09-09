@@ -5,6 +5,7 @@
   "main": "src/main.js",
   "type": "module",
   "scripts": {
+    "postinstall": "prisma generate",
     "vercel-build": "echo Hello from Vercel!",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
