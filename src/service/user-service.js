@@ -88,7 +88,7 @@ const loginUser = async (request) => {
       },
     }),
     prismaClient.notificationToken.create({
-      data: { userId: user.id, token: login.expoToken },
+      data: { userId: user.id, token: login.expoToken || "" },
     }),
   ]);
 

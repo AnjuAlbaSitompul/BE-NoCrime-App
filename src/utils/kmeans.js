@@ -23,7 +23,7 @@ const KMeans = async () => {
   const result = kmeans(remainingData, 2);
   const centroids = result.centroids.map((centroid) => centroid[0]);
   const sortedCentroids = [...centroids].sort((a, b) => b - a);
-  const dangerLevels = ["danger", "safe"];
+  const dangerLevels = ["LOW", "MEDIUM", "HIGH", "CRITICAL"];
 
   const getDangerLevel = (index) => {
     const centroidValue = centroids[index];

@@ -1,3 +1,4 @@
+import { logger } from "../application/logging.js";
 import userService from "../service/user-service.js";
 
 const createUser = async (req, res, next) => {
@@ -5,6 +6,7 @@ const createUser = async (req, res, next) => {
     const user = await userService.createUser(req.body);
     res.status(201).json({ status: "success", data: user });
   } catch (e) {
+    logger.error(`Error creating user: ${e.message}`);
     next(e);
   }
 };
@@ -28,6 +30,7 @@ const loginUser = async (req, res, next) => {
     });
     res.status(200).json({ status: "success", data: rest });
   } catch (e) {
+    logger.error(`Error logging in user: ${e.message}`);
     next(e);
   }
 };
@@ -38,6 +41,7 @@ const logoutUser = async (req, res, next) => {
     res.clearCookie("refreshToken");
     res.status(200).json({ status: "success" });
   } catch (e) {
+    logger.error(`Error logging out user: ${e.message}`);
     next(e);
   }
 };

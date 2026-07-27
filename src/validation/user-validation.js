@@ -9,9 +9,7 @@ const userValidationRequest = Joi.object({
 const loginUserValidation = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
-  expoToken: Joi.string()
-    .regex(/ExponentPushToken\[[a-zA-Z0-9-_]*\]/)
-    .required(),
+  expoToken: Joi.string().optional()
 });
 
 export { userValidationRequest, loginUserValidation };
